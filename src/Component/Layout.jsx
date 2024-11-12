@@ -10,6 +10,7 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
+import Dashboard from './Dashboard';
 
 const NAVIGATION = [
     {
@@ -22,7 +23,7 @@ const NAVIGATION = [
       icon: <DashboardIcon />,
     },
     {
-      segment: 'orders',
+      segment: 'Orders',
       title: 'Orders',
       icon: <ShoppingCartIcon />,
     },
@@ -95,7 +96,7 @@ export const Layout = (props) => {
     const [count, setCount] = useState(0)
     const { window } = props;
   
-    const router = useDemoRouter('/dashboard');
+    const router = useDemoRouter('/');
   
     // Remove this const when copying and pasting into your project.
     const demoWindow = window ? window() : undefined;
@@ -109,7 +110,8 @@ export const Layout = (props) => {
     >
       <DashboardLayout>
         <PageContainer>
-          <Grid container spacing={1}>
+            {router.pathname=='/dashboard' && <Dashboard></Dashboard>}
+           {/* <Grid container spacing={1}>
             <Grid size={5} />
             <Grid size={12}>
               <Skeleton height={14} />
@@ -143,11 +145,10 @@ export const Layout = (props) => {
             <Grid size={3}>
               <Skeleton height={100} />
             </Grid>
-          </Grid>
+          </Grid> */}
         </PageContainer>
       </DashboardLayout>
-    </AppProvider>
-
+    </AppProvider> 
     </div>
   )
 }
